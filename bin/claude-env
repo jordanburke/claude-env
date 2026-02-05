@@ -128,17 +128,19 @@ show_help() {
 claude-env - Run Claude Code with .env file loaded
 
 USAGE:
-    claude-env [OPTIONS] [-- claude-args...]
+    claude-env [OPTIONS] [claude-args...]
 
 OPTIONS:
-    -h, --help      Show this help message
-    -V, --version   Show version information
-    -v, --verbose   Show which .env file is being used
-    -c, --check     Validate setup without running Claude
-    -e, --edit      Edit .env file with $EDITOR
+    --help          Show this help message
+    --version       Show version information
+    --verbose       Show which .env file is being used
+    --check         Validate setup without running Claude
+    --edit          Edit .env file with $EDITOR
     --view          View .env contents (be careful with secrets!)
     --upgrade       Update claude-env to latest version
     --env FILE      Override .env file path
+
+    All other flags (like -c, -p, etc.) are passed through to Claude.
 
 ENV FILE DISCOVERY:
     claude-env automatically finds your .env file (first match wins):
@@ -267,26 +269,27 @@ main() {
     local check_only=false
     local claude_args=()
 
-    # Parse arguments
+    # Parse arguments - only intercept long-form claude-env options
+    # All short flags pass through to Claude (e.g., -c, -p, -r)
     while [[ $# -gt 0 ]]; do
         case $1 in
-            -h|--help)
+            --help)
                 show_help
                 exit 0
                 ;;
-            -V|--version)
+            --version)
                 show_version
                 exit 0
                 ;;
-            -v|--verbose)
+            --verbose)
                 verbose=true
                 shift
                 ;;
-            -c|--check)
+            --check)
                 check_only=true
                 shift
                 ;;
-            -e|--edit)
+            --edit)
                 do_edit
                 exit 0
                 ;;
@@ -309,6 +312,7 @@ main() {
                 break
                 ;;
             *)
+                # Pass everything else through to Claude
                 claude_args+=("$1")
                 shift
                 ;;

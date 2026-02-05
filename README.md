@@ -79,14 +79,16 @@ PANEL_DEFAULT_MODELS=openai/gpt-4o
 
 | Option | Description |
 |--------|-------------|
-| `-h, --help` | Show help |
-| `-V, --version` | Show version |
-| `-v, --verbose` | Show which .env is loaded |
-| `-c, --check` | Validate setup |
-| `-e, --edit` | Edit .env with $EDITOR |
+| `--help` | Show help |
+| `--version` | Show version |
+| `--verbose` | Show which .env is loaded |
+| `--check` | Validate setup (doesn't run Claude) |
+| `--edit` | Edit .env with $EDITOR |
 | `--view` | View .env contents |
 | `--upgrade` | Update to latest |
 | `--env FILE` | Use specific .env file |
+
+All other flags (like `-c`, `-p`, `-r`) pass through to Claude.
 
 ## Security
 

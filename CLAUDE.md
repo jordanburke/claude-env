@@ -61,14 +61,16 @@ claude-env -- -p "fix the bug"
 
 | Command | Description |
 |---------|-------------|
-| `-h, --help` | Show help message |
-| `-V, --version` | Show version information |
-| `-v, --verbose` | Show which .env file is being used |
-| `-c, --check` | Validate setup without running Claude |
-| `-e, --edit` | Edit .env file with $EDITOR |
+| `--help` | Show help message |
+| `--version` | Show version information |
+| `--verbose` | Show which .env file is being used |
+| `--check` | Validate setup without running Claude |
+| `--edit` | Edit .env file with $EDITOR |
 | `--view` | View .env contents (careful with secrets!) |
 | `--upgrade` | Update claude-env to latest version |
 | `--env FILE` | Override .env file path |
+
+All other flags (like `-c`, `-p`, `-r`) pass through to Claude.
 
 ## .env File Discovery
 
